@@ -36,6 +36,70 @@ class BDD_CIR {
 
     return $resultat;
   }
+
+  public function inscription($nom, $prenom, $pass, $mail) {
+    $requete = $this->database->prepare("INSERT INTO users(nom, prenom, password, mail) VALUES(:nom, :prenom, PASSWORD(:pass), :mail)");
+    $requete->bindParam(':nom', $nom, PDO::PARAM_STR);
+    $requete->bindParam(':prenom', $prenom, PDO::PARAM_STR);
+    $requete->bindParam(':pass', $pass, PDO::PARAM_STR);
+    $requete->bindParam(':mail', $mail, PDO::PARAM_STR);
+
+    $resultat = $requete->execute();
+
+    return $resultat;
+  }
+
+  public function add_note($matiere, $note, $nom, $prenom) {
+    $requete = $this->database->prepare("SELECT id FROM users WHERE nom = :nom AND prenom = :prenom");
+    $requete->bindParam(':nom', $nom, PDO::PARAM_STR);
+    $requete->bindParam(':prenom', $prenom, PDO::PARAM_STR);
+
+    $requete->execute();
+
+    $id = $requete->fetch();
+    $id = $id[0];
+
+    if ($id > 0) {
+      $requete = $this->database->prepare("INSERT INTO notes(matiere, note, id_Users) VALUES(:matiere, :note, :id)");
+      $requete->bindParam(':matiere', $matiere, PDO::PARAM_STR);
+      $requete->bindParam(':note', $note, PDO::PARAM_STR);
+      $requete->bindParam(':id', $id, PDO::PARAM_INT);
+
+      $resultat = $requete->execute();
+    } else $resultat = false;
+
+    return $resultat;
+  }
+
+  public function getNotes($nom, $prenom) {
+    $requete = $this->database->prepare("SELECT id FROM users WHERE nom = :nom AND prenom = :prenom");
+    $requete->bindParam(':nom', $nom, PDO::PARAM_STR);
+    $requete->bindParam(':prenom', $prenom, PDO::PARAM_STR);
+
+    $requete->execute();
+
+    $id = $requete->fetch();
+    $id = $id[0];
+
+    if ($id > 0) {
+      $requete = $this->database->prepare("SELECT * FROM notes WHERE id_Users = :id ORDER BY matiere, note");
+      $requete->bindParam(':id', $id, PDO::PARAM_INT);
+
+      $requete->execute();
+      $resultat = $requete->fetchAll();
+    } else $resultat = false;
+
+    return $resultat;
+  }
+
+  public function delete_note($id) {
+    $requete = $this->database->prepare("DELETE FROM notes WHERE id = :id");
+    $requete->bindParam(':id', $id, PDO::PARAM_INT);
+
+    $resultat = $requete->execute();
+
+    return $resultat;
+  }
 }
 
 ?>

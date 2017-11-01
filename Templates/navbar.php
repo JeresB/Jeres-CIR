@@ -10,11 +10,14 @@
     <ul class="navbar-nav ml-auto">
       <?php
       if ($connected) {
-        echo '<span class="navbar-text">
+        echo '<li class="nav-item">
+                <a id="link-note" class="nav-link" href="/View/notes.php">Notes</a>
+              </li>
+              <span class="navbar-text">
                 Bonjour '.$_SESSION["prenom"].'
               </span>
               &nbsp;&nbsp;
-              <button class="btn btn-danger my-2 my-sm-0" type="submit"><i class="fa fa-sign-out" aria-hidden="true"></i></button>';
+              <button id="link-deconnexion" class="btn btn-danger my-2 my-sm-0" type="submit"><i class="fa fa-sign-out" aria-hidden="true"></i></button>';
       }
       else {
         echo '<li class="nav-item">

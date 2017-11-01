@@ -1,6 +1,9 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
-$connected = $_SESSION['connected'];
+if(isset($_SESSION['connected'])) $connected = $_SESSION['connected'];
+else $connected = false;
 
 ?>
