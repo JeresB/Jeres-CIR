@@ -11,8 +11,16 @@ $_SESSION['prenom'] = $resultat['prenom'];
 $_SESSION['mail'] = $resultat['mail'];
 $_SESSION['connected'] = $resultat['valide'];
 
-if($resultat['valide']) $_SESSION['success'] = "Connexion réussie !";
-else $_SESSION['erreur'] = "Connexion échouée !";
+if(isset($resultat) && $resultat != false) {
+	$_SESSION['success'] = "Connexion réussie !";
+	$_SESSION['nom'] = $resultat['nom'];
+	$_SESSION['prenom'] = $resultat['prenom'];
+	$_SESSION['mail'] = $resultat['mail'];
+	$_SESSION['connected'] = true;
+} else {
+	$_SESSION['erreur'] = "Connexion échouée !";
+	$_SESSION['connected'] = false;
+}
 
 header('Location: /View/');
 ?>

@@ -27,7 +27,7 @@ class BDD_CIR {
   }
 
   public function connexion($login, $pass) {
-    $requete = $this->database->prepare("SELECT *, count(*) as valide FROM users WHERE nom = :login OR mail = :login AND password = PASSWORD(:pass)");
+    $requete = $this->database->prepare("SELECT * FROM users WHERE nom = :login OR mail = :login AND password = PASSWORD(:pass)");
     $requete->bindParam(':login', $login, PDO::PARAM_STR);
     $requete->bindParam(':pass', $pass, PDO::PARAM_STR);
 
