@@ -18,6 +18,7 @@ $secu_info = 0;
 $framework = 0;
 $economie = 0;
 $contrat_moral = 0;
+$stage = 0;
 foreach ($notes as $note) {
   switch ($note['matiere']) {
     case 'Physique':
@@ -67,6 +68,10 @@ foreach ($notes as $note) {
     case 'Contrat Moral':
       if ($contrat_moral == 0) $contrat_moral = $note['note'];
       else $contrat_moral += $note['note'] / 2;
+      break;
+    case 'Rapport de stage et soutenance':
+      if ($stage == 0) $stage = $note['note'];
+      else $stage += $note['note'] / 2;
       break;
     default:
       break;
@@ -136,6 +141,12 @@ if ($contrat_moral != 0) {
   $coeff_total += 2;
   $note_total += $contrat_moral;
 }
+if ($stage != 0) {
+  $stage = $stage * 13;
+  $coeff_total += 13;
+  $note_total += $stage;
+}
+
 
 if($coeff_total != 0) {
   $moyenne = $note_total / $coeff_total;

@@ -12,7 +12,8 @@ define('MATIERES', array(
     'Sécurité Informatique',
     'Framework',
     'Economie',
-    'Contrat Moral'
+    'Contrat Moral',
+    'Rapport de stage et soutenance'
 ));
 
 ?>

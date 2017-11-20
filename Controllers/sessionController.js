@@ -12,7 +12,7 @@ $( document ).ready(function() {
         '</div>' +
         '<div class="form-group">' +
           '<label for="password">Mot de passe</label>' +
-          '<input type="password" class="form-control" id="password" placeholder="Password" required>' +
+          '<input type="password" class="form-control" id="password" name="password" placeholder="Password" required>' +
         '</div>' +
         '<button type="submit" class="btn btn-primary btn-block">Se connecter <i class="fa fa-sign-in" aria-hidden="true"></i></button>' +
       '</form>'

@@ -27,11 +27,15 @@ class BDD_CIR {
   }
 
   public function connexion($login, $pass) {
-    $requete = $this->database->prepare("SELECT * FROM users WHERE nom = :login OR mail = :login AND password = PASSWORD(:pass)");
-    $requete->bindParam(':login', $login, PDO::PARAM_STR);
-    $requete->bindParam(':pass', $pass, PDO::PARAM_STR);
+	echo $login.'<br>'.$pass;
+    $requete = $this->database->prepare("SELECT * FROM users WHERE (nom = :nom AND password = PASSWORD(:passnom)) OR (mail = :mail AND password = PASSWORD(:passmail))");
+    $requete->bindParam(':nom', $login, PDO::PARAM_STR);
+    $requete->bindParam(':passnom', $pass, PDO::PARAM_STR);
+    $requete->bindParam(':mail', $login, PDO::PARAM_STR);
+    $requete->bindParam(':passmail', $pass, PDO::PARAM_STR);
 
     $requete->execute();
+    $requete->debugDumpParams();
     $resultat = $requete->fetch();
 
     return $resultat;

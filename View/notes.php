@@ -42,7 +42,7 @@ include_once('../Controllers/notesController.php');
             </div>
           </div>
           <div class="col-md-6">
-            <div class="card text-white bg-info mb-3">
+            <div class="card text-white bg-primary mb-3">
               <div class="card-header text-center">Liste des notes</div>
               <div class="card-body">
                 <p class="card-text">
