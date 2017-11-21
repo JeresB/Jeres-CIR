@@ -53,6 +53,17 @@ class BDD_CIR {
     return $resultat;
   }
 
+  public function findCompteIdentique($mail) {
+    $requete = $this->database->prepare("SELECT count(*) as nb FROM users WHERE mail = :mail");
+    $requete->bindParam(':mail', $mail, PDO::PARAM_STR);
+
+    $requete->execute();
+    $resultat = $requete->fetch();
+
+    if ($resultat['nb'] > 0) return false;
+    else return true;
+  }
+
   public function add_note($matiere, $note, $nom, $prenom) {
     $requete = $this->database->prepare("SELECT id FROM users WHERE nom = :nom AND prenom = :prenom");
     $requete->bindParam(':nom', $nom, PDO::PARAM_STR);
