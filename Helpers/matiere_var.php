@@ -13,7 +13,13 @@ define('MATIERES', array(
     'Framework',
     'Economie',
     'Contrat Moral',
-    'Rapport de stage et soutenance'
+    'Rapport de stage et soutenance',
+    'FPGA-VHDL',
+    'ELA 1',
+    'Projet SMP',
+    'Projet CSI3',
+    'SMP',
+    'Shell'
 ));
 
 ?>
