@@ -1,33 +1,25 @@
 <?php require_once('../Controllers/navbarController.php'); ?>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="/">ENT CIR</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
-      <?php
-      if ($connected) {
-        echo '<li class="nav-item">
-                <a id="link-note" class="nav-link" href="/View/notes.php">Notes</a>
-              </li>
-              <span class="navbar-text">
-                Bonjour '.$_SESSION["prenom"].'
-              </span>
-              &nbsp;&nbsp;
-              <button id="link-deconnexion" class="btn btn-danger my-2 my-sm-0" type="submit"><i class="fa fa-sign-out" aria-hidden="true"></i></button>';
-      }
-      else {
-        echo '<li class="nav-item">
-                <a id="link-connexion" class="nav-link" href="#">Connexion</a>
-              </li>
-              <li class="nav-item">
-                <a id="link-inscription" class="nav-link" href="#">Inscription</a>
-              </li>';
-      }
-      ?>
-    </ul>
+<div class="ui stackable menu">
+  <div class="item">
+    <a href="/View"><img src="../Ressources/image/isen.png" width="32" height="32"></a>
   </div>
-</nav>
+  <a class="item" href="/View">ENT Jeres</a>
+  <div class="right menu">
+    <a class="item" href="presentation.php">Présentation</a>
+    <?php
+      if ($connected) {
+        echo '<a id="link-note" class="item" href="/View/notes.php">Notes</a>
+              <span class="item">Bonjour '.$_SESSION["prenom"].'</span>&nbsp;&nbsp;
+              <div class="item">
+                <a href="/Controllers/deconnexion.php">
+                  <div class="ui red button"><i class="sign out icon"></i></div>
+                </a>
+              </div>';
+      } else {
+        echo '<a id="link-connexion" class="item" href="/View/connexion.php">Connexion</a>
+              <a id="link-inscription" class="item" href="/View/inscription.php">Inscription</a>';
+      }
+    ?>
+  </div>
+</div>

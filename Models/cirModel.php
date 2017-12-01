@@ -20,15 +20,23 @@ class BDD_CIR {
   }
 
   public function getAll() {
-    $requete = $this->database->prepare("SELECT * FROM users");
+    $requete = $this->database->prepare("SELECT * FROM utilisateur");
+    $requete->execute();
+
+    return $requete->fetchAll();
+  }
+
+  public function getPromos() {
+    $requete = $this->database->prepare("SELECT * FROM promo");
     $requete->execute();
 
     return $requete->fetchAll();
   }
 
   public function connexion($login, $pass) {
+    $pass = crypt($pass, '$6$rounds=5000$usesomesillystringforsalt$');
 	echo $login.'<br>'.$pass;
-    $requete = $this->database->prepare("SELECT * FROM users WHERE (nom = :nom AND password = PASSWORD(:passnom)) OR (mail = :mail AND password = PASSWORD(:passmail))");
+    $requete = $this->database->prepare("SELECT * FROM utilisateur WHERE (nom_utilisateur = :nom AND password = :passnom) OR (mail = :mail AND password = :passmail)");
     $requete->bindParam(':nom', $login, PDO::PARAM_STR);
     $requete->bindParam(':passnom', $pass, PDO::PARAM_STR);
     $requete->bindParam(':mail', $login, PDO::PARAM_STR);
@@ -41,20 +49,21 @@ class BDD_CIR {
     return $resultat;
   }
 
-  public function inscription($nom, $prenom, $pass, $mail) {
-    $requete = $this->database->prepare("INSERT INTO users(nom, prenom, password, mail) VALUES(:nom, :prenom, PASSWORD(:pass), :mail)");
-    $requete->bindParam(':nom', $nom, PDO::PARAM_STR);
-    $requete->bindParam(':prenom', $prenom, PDO::PARAM_STR);
+  public function inscription($login, $pass, $mail, $promo) {
+    $pass = crypt($pass, '$6$rounds=5000$usesomesillystringforsalt$');
+    $requete = $this->database->prepare("INSERT INTO utilisateur(nom_utilisateur, password, mail, nom_promo) VALUES(:login, :pass, :mail, :promo)");
+    $requete->bindParam(':login', $login, PDO::PARAM_STR);
     $requete->bindParam(':pass', $pass, PDO::PARAM_STR);
     $requete->bindParam(':mail', $mail, PDO::PARAM_STR);
-
+    $requete->bindParam(':promo', $promo, PDO::PARAM_STR);
+    error_log("INSERT INTO utilisateur(nom_utilisateur, password, mail, nom_promo) VALUES(:".$login.", :".$pass.", :".$mail.", ".$promo.")");
     $resultat = $requete->execute();
 
     return $resultat;
   }
 
   public function findCompteIdentique($mail) {
-    $requete = $this->database->prepare("SELECT count(*) as nb FROM users WHERE mail = :mail");
+    $requete = $this->database->prepare("SELECT count(*) as nb FROM utilisateur WHERE mail = :mail");
     $requete->bindParam(':mail', $mail, PDO::PARAM_STR);
 
     $requete->execute();
@@ -65,7 +74,7 @@ class BDD_CIR {
   }
 
   public function add_note($matiere, $note, $nom, $prenom) {
-    $requete = $this->database->prepare("SELECT id FROM users WHERE nom = :nom AND prenom = :prenom");
+    $requete = $this->database->prepare("SELECT id FROM utilisateur WHERE nom = :nom AND prenom = :prenom");
     $requete->bindParam(':nom', $nom, PDO::PARAM_STR);
     $requete->bindParam(':prenom', $prenom, PDO::PARAM_STR);
 
@@ -75,7 +84,7 @@ class BDD_CIR {
     $id = $id[0];
 
     if ($id > 0) {
-      $requete = $this->database->prepare("INSERT INTO notes(matiere, note, id_Users) VALUES(:matiere, :note, :id)");
+      $requete = $this->database->prepare("INSERT INTO note(matiere, note, id_Users) VALUES(:matiere, :note, :id)");
       $requete->bindParam(':matiere', $matiere, PDO::PARAM_STR);
       $requete->bindParam(':note', $note, PDO::PARAM_STR);
       $requete->bindParam(':id', $id, PDO::PARAM_INT);
@@ -87,7 +96,7 @@ class BDD_CIR {
   }
 
   public function getNotes($nom, $prenom) {
-    $requete = $this->database->prepare("SELECT id FROM users WHERE nom = :nom AND prenom = :prenom");
+    $requete = $this->database->prepare("SELECT id FROM utilisateur WHERE nom = :nom AND prenom = :prenom");
     $requete->bindParam(':nom', $nom, PDO::PARAM_STR);
     $requete->bindParam(':prenom', $prenom, PDO::PARAM_STR);
 
@@ -97,7 +106,7 @@ class BDD_CIR {
     $id = $id[0];
 
     if ($id > 0) {
-      $requete = $this->database->prepare("SELECT * FROM notes WHERE id_Users = :id ORDER BY matiere, note");
+      $requete = $this->database->prepare("SELECT * FROM note WHERE id_Users = :id ORDER BY matiere, note");
       $requete->bindParam(':id', $id, PDO::PARAM_INT);
 
       $requete->execute();
@@ -108,7 +117,7 @@ class BDD_CIR {
   }
 
   public function delete_note($id) {
-    $requete = $this->database->prepare("DELETE FROM notes WHERE id = :id");
+    $requete = $this->database->prepare("DELETE FROM note WHERE id = :id");
     $requete->bindParam(':id', $id, PDO::PARAM_INT);
 
     $resultat = $requete->execute();

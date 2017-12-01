@@ -1,18 +1,32 @@
 <?php
 if(isset($_SESSION['success'])) {
-  echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-          '.$_SESSION["success"].'
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>';
+  ?>
+  <script type="text/javascript">
+    $.uiAlert({
+      textHead: '<?=$_SESSION["success"] ?>'
+      text: '',
+      bgcolor: '#19c3aa',
+      textcolor: '#fff',
+      position: 'top-right',
+      icon: 'checkmark box',
+      time: 3,
+    })
+  </script>
+  <?php
 } else if(isset($_SESSION['erreur'])) {
-  echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <strong>Attention !</strong> '.$_SESSION["erreur"].'
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>';
+  ?>
+  <script type="text/javascript">
+    $.uiAlert({
+      textHead: '<?=$_SESSION["erreur"] ?>',
+      text: '',
+      bgcolor: '#DB2828',
+      textcolor: '#fff',
+      position: 'top-right',
+      icon: 'remove circle',
+      time: 3,
+    })
+  </script>
+  <?php
 }
 
 unset($_SESSION['erreur']);

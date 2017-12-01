@@ -12,10 +12,11 @@ if(isset($resultat) && $resultat != false) {
 	$_SESSION['prenom'] = $resultat['prenom'];
 	$_SESSION['mail'] = $resultat['mail'];
 	$_SESSION['connected'] = true;
+	header('Location: /View/');
 } else {
 	$_SESSION['erreur'] = "Connexion échouée !";
 	$_SESSION['connected'] = false;
+	header('Location: /View/connexion.php');
 }
 
-header('Location: /View/');
 ?>

@@ -5,47 +5,21 @@ $( document ).ready(function() {
     $.dialog({
       title: 'Connexion',
       theme: 'material',
-      useBootstrap: false,
-      backgroundDismiss: true,
-      content: '<form id="form-connexion" class="ui form" action="/Controllers/connexion.php" method="post">' +
-                  '<div class="field">' +
-                    '<label>Nom d\'utilisateur / Email</label>' +
-                    '<input name="login" type="text">' +
-                  '</div>' +
-                  '<div class="field">' +
-                    '<label>Mot de passe</label>' +
-                    '<input name="password" type="text">' +
-                  '</div>' +
-                  '<button class="ui submit button" type="submit">Se connecter <i class="sign in icon"></i></button>' +
-                  '<div class="ui error message"></div>' +
-                '</form>'
+      content: '<form action="/Controllers/connexion.php" method="post">' +
+        '<div class="form-group">' +
+          '<label for="login">Nom d\'utilisateur</label>' +
+          '<input type="text" class="form-control" id="login" name="login" aria-describedby="loginHelp" placeholder="Login" required>' +
+          '<small id="loginHelp" class="form-text text-muted">Nom ou adresse mail</small>' +
+        '</div>' +
+        '<div class="form-group">' +
+          '<label for="password">Mot de passe</label>' +
+          '<input type="password" class="form-control" id="password" name="password" placeholder="Password" required>' +
+        '</div>' +
+        '<button type="submit" class="btn btn-primary btn-block">Se connecter <i class="fa fa-sign-in" aria-hidden="true"></i></button>' +
+      '</form>'
     });
-
   });
 
-  $('#form-connexion').form({
-    on: 'blur',
-    fields: {
-      login: {
-        identifier  : 'login',
-        rules: [
-          {
-            type   : 'empty',
-            prompt : 'Entrez votre nom d\'utilisateur !'
-          }
-        ]
-      },
-      password: {
-        identifier  : 'password',
-        rules: [
-          {
-            type   : 'empty',
-            prompt : 'Entrez votre mot de passe !'
-          }
-        ]
-      }
-    }
-  });
   // Affichage de la pop-up d'inscription
   $("#link-inscription").click(function() {
     $.dialog({
