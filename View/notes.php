@@ -112,7 +112,7 @@ include_once('../Controllers/notesController.php');
                     <?php
                       $nb = 1;
                       foreach ($moyenneByMatiere as $matiere) {
-                        if($matiere['moyenne_matiere'] > $matiere['coeff_matiere']) {
+                        if($matiere['moyenne_matiere'] >= $matiere['coeff_matiere']) {
                           $td = '<td><i class="checkmark icon"></i> ';
                           $tr = '<tr class="good">';
                         } else {
@@ -147,7 +147,7 @@ include_once('../Controllers/notesController.php');
                     <?php
                       $nb = 1;
                       foreach ($moyenneByModule as $module) {
-                        if($module['moyenne_module'] > $module['seuil_ects']) {
+                        if($module['moyenne_module'] >= $module['seuil_ects']) {
                           $td = '<td><i class="checkmark icon"></i> ';
                           $tr = '<tr class="good">';
                         } else {
