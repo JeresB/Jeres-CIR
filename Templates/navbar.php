@@ -22,5 +22,6 @@
               <a id="link-inscription" class="item" href="/View/inscription.php">Inscription</a>';
       }
     ?>
+    <a class="item" href="aide.php"><i class="phone icon"></i><i class="bug icon"></i><i class="question icon"></i></a>
   </div>
 </div>

@@ -9,9 +9,10 @@ foreach ($noteees as $note) {
   $coeff = $note['coeff_note'] * $note['coeff_matiere'];
   $coeff_total += $coeff;
 }
-
-$moyenne = $somme / $coeff_total;
-$moyenne = round($moyenne, 2);
+if ($coeff_total != 0) {
+  $moyenne = $somme / $coeff_total;
+  $moyenne = round($moyenne, 2);
+}
 // -----------------------------------------------------------------------------
 
 // --------------------- CALCUL MOYENNE PAR MATIERES ---------------------------

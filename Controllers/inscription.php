@@ -7,9 +7,9 @@ $resultat = false;
 
 $erreur = "";
 if($_POST['password'] == $_POST['password2']) {
-  $identique = $gestion_bdd->findCompteIdentique($_POST['mail']);
-  if ($identique) $resultat = $gestion_bdd->inscription($_POST['login'], $_POST['password'], $_POST['mail'], $_POST['promo']);
-  else $erreur .= " L'adresse mail est déjà utilisé !";
+  $identique = $gestion_bdd->findCompteIdentique($_POST['mail'], $_POST['login']);
+  if ($identique == 0) $resultat = $gestion_bdd->inscription($_POST['login'], $_POST['password'], $_POST['mail'], $_POST['promo']);
+  else $erreur .= " L\'adresse mail ou le nom d\'utilisateur sont déjà utilisés !";
 } else {
   $erreur .= " les 2 mots de passe sont différents";
 }
