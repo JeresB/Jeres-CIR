@@ -26,3 +26,13 @@ main {
 .min-height-350 {
   min-height: 350px;
 }
+
+.good {
+  background-color: #21ba45;
+  color: white;
+}
+
+.bad {
+  background-color: #db2828;
+  color: white;
+}

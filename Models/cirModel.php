@@ -34,7 +34,7 @@ class BDD_CIR {
   }
 
   public function getMatieres($promo) {
-    $requete = $this->database->prepare("SELECT id, nom_matiere FROM promo, matiere WHERE promo.nom_promo = :promo AND promo.nom_promo = matiere.nom_promo");
+    $requete = $this->database->prepare("SELECT id, nom_matiere, coeff_matiere FROM promo, matiere WHERE promo.nom_promo = :promo AND promo.nom_promo = matiere.nom_promo");
     $requete->bindParam(':promo', $promo, PDO::PARAM_STR);
     $requete->execute();
 
@@ -52,6 +52,23 @@ class BDD_CIR {
 
     $requete = $this->database->prepare("SELECT note.id, note.note, note.coeff_note, matiere.nom_matiere, matiere.coeff_matiere FROM note, matiere WHERE id_utilisateur = :code AND note.id_matiere = matiere.id");
     $requete->bindParam(':code', $code, PDO::PARAM_INT);
+    $requete->execute();
+
+    return $requete->fetchAll();
+  }
+
+  public function getNoteByMatiere($login, $mail, $matiere) {
+    $requete = $this->database->prepare("SELECT * FROM utilisateur WHERE nom_utilisateur = :login AND mail = :mail");
+    $requete->bindParam(':login', $login, PDO::PARAM_STR);
+    $requete->bindParam(':mail', $mail, PDO::PARAM_STR);
+
+    $requete->execute();
+    $user = $requete->fetch();
+    $code = $user['id'];
+
+    $requete = $this->database->prepare("SELECT note.note, note.coeff_note FROM note WHERE id_utilisateur = :code AND note.id_matiere = :matiere");
+    $requete->bindParam(':code', $code, PDO::PARAM_INT);
+    $requete->bindParam(':matiere', $matiere, PDO::PARAM_INT);
     $requete->execute();
 
     return $requete->fetchAll();

@@ -19,7 +19,7 @@ include_once('../Controllers/notesController.php');
       <main>
         <div class="ui fluid container">
           <h1 class="ui center dividing aligned header"><i class="graduation cap icon"></i> Notes</h1>
-          <div class="ui three column grid">
+          <div class="ui five column grid">
             <div class="four wide column">
               <div class="min-height-350 ui tall stacked green inverted segment">
                 <h4 class="ui center aligned dividing header">Ajouter une note</h4>
@@ -93,6 +93,46 @@ include_once('../Controllers/notesController.php');
               <div class="min-height-350 ui center aligned tall stacked <?php if($moyenne >= 12) echo 'green'; else if($moyenne >= 11.5) echo 'orange'; else echo 'red'; ?> inverted segment">
                 <h4 class="ui dividing header">Moyenne générale actuelle</h4>
                 <h5 class="ui header">Moyenne : <?=$moyenne ?>/20</h5>
+              </div>
+            </div>
+            <div class="eight wide column">
+              <div class="ui tall stacked teal inverted segment">
+                <h4 class="ui center aligned dividing header">Moyenne par matières</h4>
+                <table class="ui inverted teal table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Matière</th>
+                      <th>Moyenne</th>
+                      <th>Coefficient</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                      $nb = 1;
+                      foreach ($moyenneByMatiere as $matiere) {
+                        if($matiere['moyenne_matiere'] > $matiere['coeff_matiere']) {
+                          $td = '<td><i class="checkmark icon"></i> ';
+                          $tr = '<tr class="good">';
+                        } else {
+                          $td = '<td><i class="close icon"></i> ';
+                          $tr = '<tr class="bad">';
+                        }
+                        echo $tr.'<td>'.$nb.'</td>
+                                <td>'.$matiere['nom_matiere'].'</td>'.
+                                $td.''.$matiere['moyenne_matiere'].'</td>
+                                <td>'.$matiere['coeff_matiere'].'</td>';
+                        $nb = $nb + 1;
+                      }
+                    ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="eight wide column">
+              <div class="ui tall stacked teal inverted segment">
+                <h4 class="ui center aligned dividing header">Moyenne par modules</h4>
+
               </div>
             </div>
           </div>
