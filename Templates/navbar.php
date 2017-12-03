@@ -11,6 +11,7 @@
       if ($connected) {
         echo '<a id="link-note" class="item" href="/View/notes.php">Notes</a>
               <span class="item">Bonjour '.$_SESSION["prenom"].'</span>&nbsp;&nbsp;
+              <a class="item" href="profil.php">Profil</a>
               <div class="item">
                 <a href="/Controllers/deconnexion.php">
                   <div class="ui red button"><i class="sign out icon"></i></div>

@@ -20,7 +20,11 @@ if($resultat) {
 
   if(isset($resultat) && $resultat != false) {
   	$_SESSION['success'] = "Connexion réussie !";
+    $_SESSION['nom'] = '';
+    $_SESSION['prenom'] = '';
   	$_SESSION['mail'] = $resultat['mail'];
+    $_SESSION['promo'] = $resultat['nom_promo'];
+    $_SESSION['surnom'] = $resultat['nom_utilisateur'];
   	$_SESSION['connected'] = true;
   	header('Location: /View/');
   } else {

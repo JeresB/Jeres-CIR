@@ -1,4 +1,9 @@
 <?php
+require_once('../Controllers/navbarController.php');
+
+if ($connected) {
+  header('Location: /View/profil.php');
+}
 require_once('../Models/cirModel.php');
 require_once('../Controllers/getPromos.php');
 ?>

@@ -1,4 +1,9 @@
 <?php
+require_once('../Controllers/navbarController.php');
+
+if ($connected) {
+  header('Location: /View/profil.php');
+}
 require_once('../Models/cirModel.php');
 ?>
 
@@ -17,7 +22,7 @@ require_once('../Models/cirModel.php');
             </div>
             <div class="field">
               <label>Mot de passe</label>
-              <input name="password" type="text">
+              <input name="password" type="password">
             </div>
             <button class="ui submit right labeled icon green button">
               <i class="sign in icon"></i>

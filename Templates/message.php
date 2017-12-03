@@ -3,7 +3,7 @@ if(isset($_SESSION['success'])) {
   ?>
   <script type="text/javascript">
     $.uiAlert({
-      textHead: '<?=$_SESSION["success"] ?>'
+      textHead: '<?=$_SESSION["success"] ?>',
       text: '',
       bgcolor: '#19c3aa',
       textcolor: '#fff',

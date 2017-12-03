@@ -18,3 +18,11 @@ main {
 .padding-top-20 {
   padding-top: 20vh;
 }
+
+.marge-bot-0 {
+  margin-bottom: 0px !important;
+}
+
+.min-height-350 {
+  min-height: 350px;
+}

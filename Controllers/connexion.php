@@ -11,6 +11,8 @@ if(isset($resultat) && $resultat != false) {
 	$_SESSION['nom'] = $resultat['nom'];
 	$_SESSION['prenom'] = $resultat['prenom'];
 	$_SESSION['mail'] = $resultat['mail'];
+	$_SESSION['promo'] = $resultat['nom_promo'];
+	$_SESSION['surnom'] = $resultat['nom_utilisateur'];
 	$_SESSION['connected'] = true;
 	header('Location: /View/');
 } else {
