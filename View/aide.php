@@ -30,29 +30,11 @@ require_once('../Models/cirModel.php');
             <i class="mail icon"></i>
             Me contacter
           </h4>
-          <form id="form-contact" class="ui form" action="/Controllers/contact.php" method="post">
-            <div class="field">
-              <label>Adresse Mail</label>
-              <input name="mail" type="email">
-            </div>
-            <div class="field">
-              <label>Objet</label>
-              <input name="objet" type="text">
-            </div>
-            <div class="field">
-              <label>Message</label>
-              <textarea name="message" rows=8></textarea>
-            </div>
-            <button class="ui submit right labeled icon blue button">
-              <i class="send icon"></i>
-              Envoyer le message
-            </button>
-            <div class="ui error message"></div>
-          </form>
+          <p><i class="mail icon"></i> Mon adresse mail : boiselet.jeremy@gmail.com<br>
+          <i class="facebook icon"></i> Facebook : <a href="https://www.facebook.com/jeremy.boiselet">Jeres Boiselet</a></p>
         </article>
       </main>
   </body>
   <?php include_once('../Templates/footer.html'); ?>
   <?php include_once('../Templates/message.php'); ?>
-  <script src="../Controllers/form_contact_validation.js"></script>
 </html>
