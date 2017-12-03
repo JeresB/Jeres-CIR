@@ -38,6 +38,7 @@ foreach ($matieres as $matiere) {
     $moyenneByMatiere[] = array(
       "nom_matiere" => $matiere['nom_matiere'],
       "coeff_matiere" => $matiere['coeff_matiere'],
+      "seuil_ects" => $matiere['seuil_ects'],
       "moyenne_matiere" => $moyenneTempo);
   }
 }

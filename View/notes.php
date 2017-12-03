@@ -112,7 +112,7 @@ include_once('../Controllers/notesController.php');
                     <?php
                       $nb = 1;
                       foreach ($moyenneByMatiere as $matiere) {
-                        if($matiere['moyenne_matiere'] >= $matiere['coeff_matiere']) {
+                        if($matiere['moyenne_matiere'] >= $matiere['seuil_ects']) {
                           $td = '<td><i class="checkmark icon"></i> ';
                           $tr = '<tr class="good">';
                         } else {
