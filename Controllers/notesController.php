@@ -1,19 +1,4 @@
 <?php
-// --------------------- CALCUL MOYENNE GENERALE -------------------------------
-$moyenne = 'X';
-$somme = 0;
-$coeff_total = 0;
-foreach ($noteees as $note) {
-  $somme += $note['note'] * $note['coeff_note'] * $note['coeff_matiere'];
-
-  $coeff = $note['coeff_note'] * $note['coeff_matiere'];
-  $coeff_total += $coeff;
-}
-if ($coeff_total != 0) {
-  $moyenne = $somme / $coeff_total;
-  $moyenne = round($moyenne, 2);
-}
-// -----------------------------------------------------------------------------
 
 // --------------------- CALCUL MOYENNE PAR MATIERES ---------------------------
 $moyenneByMatiere = array();
@@ -42,8 +27,22 @@ foreach ($matieres as $matiere) {
       "moyenne_matiere" => $moyenneTempo);
   }
 }
+// -----------------------------------------------------------------------------
 
+// --------------------- CALCUL MOYENNE GENERALE -------------------------------
+$moyenne = 'X';
+$somme = 0;
+$coeff_total = 0;
+foreach ($moyenneByMatiere as $note) {
+  $somme += $note['moyenne_matiere'] * $note['coeff_matiere'];
 
+  $coeff =  $note['coeff_matiere'];
+  $coeff_total += $coeff;
+}
+if ($coeff_total != 0) {
+  $moyenne = $somme / $coeff_total;
+  $moyenne = round($moyenne, 2);
+}
 // -----------------------------------------------------------------------------
 
 
