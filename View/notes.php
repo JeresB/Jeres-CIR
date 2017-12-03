@@ -94,6 +94,7 @@ include_once('../Controllers/notesController.php');
               <div class="min-height-350 ui center aligned tall stacked <?php if($moyenne == 'X') echo 'olive'; else if($moyenne >= 12) echo 'green'; else if($moyenne >= 11.5) echo 'orange'; else echo 'red'; ?> inverted segment">
                 <h4 class="ui dividing header">Moyenne générale actuelle</h4>
                 <h5 class="ui header">Moyenne : <?=$moyenne ?>/20</h5>
+                <img class="img-resp" src="../Ressources/image/motivation.jpg" alt="Motivation">
               </div>
             </div>
             <div class="eight wide column">
