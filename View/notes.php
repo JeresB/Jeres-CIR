@@ -8,6 +8,7 @@ require_once('../Models/cirModel.php');
 require_once('../Helpers/matiere_var.php');
 require_once('../Controllers/getMatieres.php');
 require_once('../Controllers/getNotes.php');
+require_once('../Controllers/getModules.php');
 include_once('../Controllers/notesController.php');
 ?>
 
@@ -132,7 +133,37 @@ include_once('../Controllers/notesController.php');
             <div class="eight wide column">
               <div class="ui tall stacked teal inverted segment">
                 <h4 class="ui center aligned dividing header">Moyenne par modules</h4>
-
+                <table class="ui inverted teal table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Module</th>
+                      <th>Moyenne</th>
+                      <th>Seuil ECTS</th>
+                      <th>ECTS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                      $nb = 1;
+                      foreach ($moyenneByModule as $module) {
+                        if($module['moyenne_module'] > $module['seuil_ects']) {
+                          $td = '<td><i class="checkmark icon"></i> ';
+                          $tr = '<tr class="good">';
+                        } else {
+                          $td = '<td><i class="close icon"></i> ';
+                          $tr = '<tr class="bad">';
+                        }
+                        echo $tr.'<td>'.$nb.'</td>
+                                <td>'.$module['nom_module'].'</td>'.
+                                $td.''.$module['moyenne_module'].'</td>
+                                <td>'.$module['seuil_ects'].'</td>
+                                <td>'.$module['ects'].'</td>';
+                        $nb = $nb + 1;
+                      }
+                    ?>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

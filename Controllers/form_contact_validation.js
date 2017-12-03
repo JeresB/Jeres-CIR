@@ -1,4 +1,4 @@
-$('#form-add_note').form({
+$('#form-contact').form({
   on: 'blur',
   fields: {
     mail: {

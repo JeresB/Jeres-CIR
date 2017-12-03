@@ -44,4 +44,44 @@ foreach ($matieres as $matiere) {
 
 
 // -----------------------------------------------------------------------------
+
+
+// --------------------- CALCUL MOYENNE PAR MODULES ----------------------------
+$moyenneByModule = array();
+
+foreach ($modules as $module) {
+  $matiereByModule = $gestion_bdd->getMatiereByModule($module['id']);
+
+  if (count($matiereByModule) > 0) {
+    $moyenneTempo = 'X';
+    $somme = 0;
+    $coeff_total = 0;
+    $add = false;
+    foreach ($matiereByModule as $matiere) {
+      foreach ($moyenneByMatiere as $note) {
+        if ($matiere['nom_matiere'] == $note['nom_matiere']) {
+          $add = true;
+          $somme += $note['moyenne_matiere'] * $note['coeff_matiere'];
+
+          $coeff = $note['coeff_matiere'];
+          $coeff_total += $coeff;
+        }
+      }
+    }
+
+    if($add) {
+      $moyenneTempo = $somme / $coeff_total;
+      $moyenneTempo = round($moyenneTempo, 2);
+
+      $moyenneByModule[] = array(
+        "nom_module" => $module['nom_module'],
+        "ects" => $module['ects'],
+        "seuil_ects" => $module['seuil_ects'],
+        "moyenne_module" => $moyenneTempo);
+    }
+    $add = false;
+  }
+}
+
+// -----------------------------------------------------------------------------
 ?>
