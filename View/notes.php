@@ -20,7 +20,7 @@ include_once('../Controllers/notesController.php');
       <main>
         <div class="ui fluid container">
           <h1 class="ui center dividing aligned header"><i class="graduation cap icon"></i> Notes</h1>
-          <div class="ui five column grid">
+          <div class="ui five column stackable grid">
             <div class="four wide column">
               <div class="min-height-350 ui tall stacked green inverted segment">
                 <h4 class="ui center aligned dividing header">Ajouter une note</h4>

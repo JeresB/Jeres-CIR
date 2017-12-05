@@ -34,7 +34,7 @@ class BDD_CIR {
   }
 
   public function getMatieres($promo) {
-    $requete = $this->database->prepare("SELECT id, nom_matiere, coeff_matiere, seuil FROM promo, matiere WHERE promo.nom_promo = :promo AND promo.nom_promo = matiere.nom_promo");
+    $requete = $this->database->prepare("SELECT id, nom_matiere, coeff_matiere, seuil FROM promo, matiere WHERE promo.nom_promo = :promo AND promo.nom_promo = matiere.nom_promo ORDER BY nom_matiere");
     $requete->bindParam(':promo', $promo, PDO::PARAM_STR);
     $requete->execute();
 
