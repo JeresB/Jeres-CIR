@@ -55,7 +55,7 @@ include_once('../Controllers/notesController.php');
             <div class="eight wide column">
               <div class="min-height-350 ui tall stacked blue inverted segment">
                 <h4 class="ui center aligned dividing header">Liste des notes</h4>
-                <table class="ui tablet stackable inverted blue table">
+                <table class="ui unstackable inverted blue table">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -100,7 +100,7 @@ include_once('../Controllers/notesController.php');
             <div class="eight wide column">
               <div class="ui tall stacked teal inverted segment">
                 <h4 class="ui center aligned dividing header">Moyenne par matières</h4>
-                <table class="ui inverted teal table">
+                <table class="ui unstackable inverted teal table">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -136,7 +136,7 @@ include_once('../Controllers/notesController.php');
             <div class="eight wide column">
               <div class="ui tall stacked teal inverted segment">
                 <h4 class="ui center aligned dividing header">Moyenne par modules</h4>
-                <table class="ui inverted teal table">
+                <table class="ui unstackable inverted teal table">
                   <thead>
                     <tr>
                       <th>#</th>
